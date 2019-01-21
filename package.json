@@ -1,0 +1,26 @@
+{
+  "name": "test-node-chat",
+  "version": "1.0.0",
+  "description": "Test Node JS chat package",
+  "main": "chat-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oleyansen/test-node-chat.git"
+  },
+  "author": "Oleg Tsygany",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/oleyansen/test-node-chat/issues"
+  },
+  "homepage": "https://github.com/oleyansen/test-node-chat#readme",
+  "dependencies": {
+    "args": "^5.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "redis": "^2.8.0",
+    "ws": "^6.1.2"
+  }
+}

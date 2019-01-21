@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <link type="text/css" href="css/style.css" rel="stylesheet" />
+  <script type="text/javascript" src="script/app.js"></script>
+
+  <script>
+    window.onload = function() {
+      var ws_port = <%- JSON.stringify(ws_port) %>;
+      initEvents(ws_port);
+    }
+  </script>
+
+  </head>
+  <body>
+    <h1>Super-Duper Chat (SDC)</h1>
+    <div><textarea id="chatRoom" rows="20" cols="60" disabled></textarea></div><br>
+    <div>SDC Message: <input type="text" id="message" size="55"><button type="button" id="send_msg" >Send</button></div><br>
+  </body>
+</html>
