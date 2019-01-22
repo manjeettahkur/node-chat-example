@@ -38,24 +38,28 @@ wss.on('connection', function connection(ws) {
 
   console.log('socket connected');
 
+  // callback to send received from Redis message to websocket
+  const redis_send = (channel, message) => {
+    console.log('Redis received: ' + message);
+    ws.send(message); 
+   }
+
+  // publish message to Redis channel if socket is alive
   ws.on('message', function incoming(message) {
-    // publish message to Redis channel if socket is alive
     if(ws.readyState == ws.OPEN) {
       pub_client.publish("sdc_channel", message);
       console.log('ws received: %s', message);
     }
   });
 
-  sub_client.on('message', function(channel, message){
-    // send received from Redis message to websocket
-    if(ws.readyState == ws.OPEN) {
-       console.log('Redis received: ' + message);
-       ws.send(message); 
-    }
-  });
 
+  // send received from Redis message to websocket
+  sub_client.on('message', redis_send);
+
+  // remove Redis event listener on websocket disconnect
   ws.on('close', function close() {
     console.log('socket disconnected');
+    sub_client.off('message', redis_send);
   });
 
 });
