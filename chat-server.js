@@ -36,16 +36,26 @@ sub_client.subscribe("sdc_channel");
 const wss = new websocket.Server({ port: ws_port });
 wss.on('connection', function connection(ws) {
 
+  console.log('socket connected');
+
   ws.on('message', function incoming(message) {
-    // publish message to Redis channel
-    pub_client.publish("sdc_channel", message);
-    console.log('ws received: %s', message);
+    // publish message to Redis channel if socket is alive
+    if(ws.readyState == ws.OPEN) {
+      pub_client.publish("sdc_channel", message);
+      console.log('ws received: %s', message);
+    }
   });
 
-  sub_client.on("message", function(channel, message){
+  sub_client.on('message', function(channel, message){
     // send received from Redis message to websocket
-    ws.send(message);
-    console.log('Redis received: ' + message);
+    if(ws.readyState == ws.OPEN) {
+       console.log('Redis received: ' + message);
+       ws.send(message); 
+    }
+  });
+
+  ws.on('close', function close() {
+    console.log('socket disconnected');
   });
 
 });
