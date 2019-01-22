@@ -6,7 +6,8 @@
         var msg_area = document.getElementById('message');
         var send_msg = document.getElementById('send_msg');
 
-        var ws = new WebSocket('ws://localhost:' + ws_port);
+        var host = window.location.hostname;
+        var ws = new WebSocket('ws://' + host + ':' + ws_port);
 
         // update chat window on message
         ws.onmessage = function (event) {
