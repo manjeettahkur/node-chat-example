@@ -11,7 +11,7 @@ This is repository for sample chat app written on Node.js
 1. Install Node.js (https://nodejs.org/en/)
 2. Download or clone repository
 3. Change directory to test app
-    >`$ cd test-node-chat`
+    >`$ cd node-chat-example`
 4. Instal dependencies
     >`$ npm install`
 5. Setup (or bring up) Redis
@@ -28,8 +28,8 @@ You can easily get app instructions about command line params by running
 
 # Dockerization
 Its possible to run this app inside of Docker container. To do so perform following steps:
-1. Change directory to test app
-    >`$ cd test-node-chat`
+1. Change directory to app directory
+    >`$ cd node-chat-example`
 2. Build docker image from Dockerfile provided
     >`$ docker build -t chat-server .`
 3. Run image with command like this:
