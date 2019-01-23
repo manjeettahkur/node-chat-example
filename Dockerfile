@@ -1,5 +1,5 @@
 # Pull base image
-FROM node:11-slim
+FROM node:11-alpine
 
 ENV APP_ROOT=/opt/chat
 WORKDIR $APP_ROOT
